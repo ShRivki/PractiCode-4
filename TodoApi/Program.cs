@@ -57,8 +57,6 @@ app.MapPost("/items",async( ToDoDbContext context ,string name)=>{
 app.MapPut("/items/{id}", async( ToDoDbContext context ,int id,bool isComplete)=>{ 
     
     Console.WriteLine(id+" "+isComplete);
-    Console.WriteLine("lllllllllllllllllllllllll");
-    //לקחת את הID מה URL
    var item= await context.Items.FindAsync(id);
    if(item!=null){
     item.IsComplete=isComplete;
@@ -78,8 +76,6 @@ app.MapDelete("/items/{id}", async( ToDoDbContext context ,int id)=>{
    }
    else{
     return Results.BadRequest("id not found");
-   }
-   
-   }
+   }}
 );
 app.Run();
