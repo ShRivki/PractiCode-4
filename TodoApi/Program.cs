@@ -47,19 +47,19 @@ app.MapGet("/items",async( ToDoDbContext context)=>{
     var list= await context.Items.ToListAsync();
     return list;}
 );
-app.MapPost("/items",async( ToDoDbContext context ,string name)=>{ 
-    var item=new Item(name);
+app.MapPost("/items",async(Item item, ToDoDbContext context )=>{ 
+    // var item=new Item(name);
     await context.Items.AddAsync(item);
     await context.SaveChangesAsync();
     return Results.Ok(item);
    }
 );
-app.MapPut("/items/{id}", async( ToDoDbContext context ,int id,bool isComplete)=>{ 
+app.MapPut("/items/{id}", async( int id,Item item1,ToDoDbContext context )=>{ 
     
-    Console.WriteLine(id+" "+isComplete);
+    Console.WriteLine(id+" "+item1.IsComplete);
    var item= await context.Items.FindAsync(id);
    if(item!=null){
-    item.IsComplete=isComplete;
+    item.IsComplete=item1.IsComplete;
     await context.SaveChangesAsync();
     return Results.Ok(item);
    }
