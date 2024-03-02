@@ -1,13 +1,13 @@
 import axios from 'axios';
-axios.interceptors.response.use(
-  response => {
-    return response; // אם התקבלה תשובה בהצלחה, פשוט החזרת התשובה
-  },
-  error => {
-    console.error('An error occurred:', error); // אם קיבלת שגיאה מהשרת, רישום השגיאה ללוג
-    return Promise.reject(error); // החזרת השגיאה להמשך טיפול
-  }
-);
+// axios.interceptors.response.use(
+//   response => {
+//     return response; 
+//   },
+//   error => {
+//     console.error('An error occurred:', error); 
+//     return Promise.reject(error); 
+//   }
+// );
 //const apiUrl = "http://localhost:5082"
 axios.defaults.baseURL = 'http://localhost:5082';
 export default {
